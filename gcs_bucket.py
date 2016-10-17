@@ -9,14 +9,14 @@ from oauth2client.client import GoogleCredentials
 def create_service():
     credentials = GoogleCredentials.get_application_default()
     return discovery.build('storage', 'v1', credentials=credentials)
-    
-    
+
+
 def list_buckets(project):
     service = create_service()
     res = service.buckets().list(project=project).execute()
     pprint(res)
-    
-    
+
+
 def create_bucket(project, bucket_name):
     service = create_service()
     res = service.buckets().insert(
@@ -25,8 +25,8 @@ def create_bucket(project, bucket_name):
         }
     ).execute()
     pprint(res)
-    
-    
+
+
 def delete_bucket(bucket_name):
     service = create_service()
     res = service.buckets().delete(bucket=bucket_name).execute()
@@ -83,3 +83,4 @@ if __name__ == "__main__":
         else:
             print_help()
             sys.exit()
+
